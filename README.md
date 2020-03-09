@@ -53,8 +53,15 @@ Pour la détection du SSID, vous devez utiliser Scapy. Pour proposer un evil twi
 
 __Question__ : comment ça se fait que ces trames puissent être lues par tout le monde ? Ne serait-il pas plus judicieux de les chiffrer ?
 
+Lors d'une tentative de découverte il n'est pas possible de se connecter de manière ciblée si l'on n'annonce pas ces informations dans l'absence d'un secret déjà partagé, même avec une station à laquelle on se connecte régulièrement, un paramètre aurait pu changer depuis la dernière connexion.
+
+![placeholder]()
+
 __Question__ : pourquoi les dispositifs iOS et Android récents ne peuvent-ils plus être tracés avec cette méthode ?
 
+Depuis quelques années, de nombreux vendeurs mettent en place ce qu'on appelle la "MAC address randomization", qui change régulièrement l'addresse MAC d'un device mobile. Cependant, de nombreuses recherches ont pu montrer que ces méthodes ne fonctionnent pas toujours et qu'elles sont facilement contournables.
+
+![placeholder]()
 
 ### 2. Détection de clients et réseaux
 
@@ -75,6 +82,14 @@ B8:17:C2:EB:8F:8F &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 08:EC:F5:28:1A:EF
 Développer un script en Python/Scapy capable de reveler le SSID correspondant à un réseau configuré comme étant "invisible".
 
 __Question__ : expliquer en quelques mots la solution que vous avez trouvée pour ce problème ?
+
+Nous avons commencé par détecter les probe frames impliquant un AP à SSID hidden pour stocker une liste de leurs BSSIDs. Equipés de cette liste, nous avons écouté spécifiquement les échanges de probe requests/responses pour s'y connecter.
+
+Lorsqu'un device connaissant déjà l'SSID se connecte à l'AP, alors il lui annonce cet SSID et l'AP lui répond, si c'est le bon, avec son SSID correct. C'est ces dernières probe responses qu'on récupère afin d'enregistrer les SSIDs de ces AP hidden.
+
+On a pu tester le script avec un router mis à disposition lors de la séance de labo ; deux AP ont pu être découverts.
+
+![Découverte des SSID d'AP hidden](images/swi_labo2_script3_working.png)
 
 ## Livrables
 
