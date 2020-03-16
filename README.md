@@ -51,6 +51,8 @@ Développer un script en Python/Scapy capable de detecter une STA cherchant un S
 
 Pour la détection du SSID, vous devez utiliser Scapy. Pour proposer un evil twin, vous pouvez récupérer votre code du labo 1 ou vous servir d'un outil existant.
 
+Exemple Script 1 :
+
 ![example de fonctionnement du script](images/swi_labo2_script1_working.png)
 
 __Question__ : comment ça se fait que ces trames puissent être lues par tout le monde ? Ne serait-il pas plus judicieux de les chiffrer ?
@@ -77,6 +79,8 @@ B8:17:C2:EB:8F:8F &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 08:EC:F5:28:1A:EF
 
 00:0E:35:C8:B8:66 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 08:EC:F5:28:1A:EF
 
+Exemple Script 2 :
+
 ![Liste des STA associés aux AP](images/swi_labo2_script2_working.png)
 
 
@@ -91,6 +95,8 @@ Nous avons commencé par détecter les probe frames impliquant un AP à SSID hid
 Lorsqu'un device connaissant déjà l'SSID se connecte à l'AP, alors il lui annonce cet SSID et l'AP lui répond, si c'est le bon, avec son SSID correct. C'est ces dernières probe responses qu'on récupère afin d'enregistrer les SSIDs de ces AP hidden.
 
 On a pu tester le script avec un router mis à disposition lors de la séance de labo ; deux AP ont pu être découverts.
+
+Exemple Script 3 :
 
 ![Découverte des SSID d'AP hidden](images/swi_labo2_script3_working.png)
 
