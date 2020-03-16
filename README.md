@@ -51,17 +51,17 @@ Développer un script en Python/Scapy capable de detecter une STA cherchant un S
 
 Pour la détection du SSID, vous devez utiliser Scapy. Pour proposer un evil twin, vous pouvez récupérer votre code du labo 1 ou vous servir d'un outil existant.
 
+![example de fonctionnement du script](images/swi_labo2_script1_working.png)
+
 __Question__ : comment ça se fait que ces trames puissent être lues par tout le monde ? Ne serait-il pas plus judicieux de les chiffrer ?
 
 Lors d'une tentative de découverte il n'est pas possible de se connecter de manière ciblée si l'on n'annonce pas ces informations dans l'absence d'un secret déjà partagé, même avec une station à laquelle on se connecte régulièrement, un paramètre aurait pu changer depuis la dernière connexion.
 
-![placeholder]()
 
 __Question__ : pourquoi les dispositifs iOS et Android récents ne peuvent-ils plus être tracés avec cette méthode ?
 
 Depuis quelques années, de nombreux vendeurs mettent en place ce qu'on appelle la "MAC address randomization", qui change régulièrement l'addresse MAC d'un device mobile. Cependant, de nombreuses recherches ont pu montrer que ces méthodes ne fonctionnent pas toujours et qu'elles sont facilement contournables.
 
-![placeholder]()
 
 ### 2. Détection de clients et réseaux
 
@@ -76,6 +76,9 @@ B8:17:C2:EB:8F:8F &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 08:EC:F5:28:1A:EF
 9C:F3:87:34:3C:CB &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 00:6B:F1:50:48:3A
 
 00:0E:35:C8:B8:66 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 08:EC:F5:28:1A:EF
+
+![Liste des STA associés aux AP](images/swi_labo2_script2_working.png)
+
 
 ### 3. Hidden SSID reveal
 

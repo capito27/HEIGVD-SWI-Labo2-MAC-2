@@ -13,6 +13,7 @@ parser.add_argument("-b", "--BSSID", required=False, help="The BSSID of the Wire
 
 args = parser.parse_args()
 
+# Basic sanity check before attempting to insert into the dictionary
 def insertStaToBssid(sta, bssid):
     if sta not in STA_to_BSSIDs:
         STA_to_BSSIDs[sta] = []

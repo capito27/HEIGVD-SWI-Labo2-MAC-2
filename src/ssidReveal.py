@@ -16,7 +16,7 @@ Hidden_bssids = []
 bssid_to_ssid = {}
 
 
-# We sniff all Dot11 probe request packets, and store 1 packet per AP bssid
+# We sniff all Dot11 probe response and beacon packets, we store for each empty beacon, the bssid associated with the AP, and for each probe response, the ssid associated with the BSSID of the AP. When we have a packet in both maps, we display the ssid of the hidden AP that we discovered.
 def packetHandler(p):
     if p.haslayer(Dot11Beacon) and (p.info == b"" or p.ID != 0) and str(p.addr3) not in Hidden_bssids:
         Hidden_bssids.append(str(p.addr3))

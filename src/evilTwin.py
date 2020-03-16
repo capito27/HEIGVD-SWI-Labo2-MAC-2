@@ -17,7 +17,6 @@ args = parser.parse_args()
 # We sniff all Dot11 probe request packets, and store 1 packet per AP bssid
 def packetHandler(p):
     if p.haslayer(Dot11ProbeReq) and p.info.decode("utf-8") not in SSIDs:
-        p.show()
         SSIDs.append(p.info.decode("utf-8"))
         displayAP(p.info.decode("utf-8"))
         
@@ -82,17 +81,8 @@ essid = Dot11Elt(ID='SSID',info=SSIDs[SSID_Index], len=len(SSIDs[SSID_Index]))
 channel = Dot11Elt(ID='DSset', info=chr(11))
 
 # RSN payload taken from https://www.4armed.com/blog/forging-wifi-beacon-frames-using-scapy/, we could have reused the one from the captured beacon, but we rather control the RSN fields
-rsn = Dot11Elt(ID='RSNinfo', info=(
-'\x01\x00'              #RSN Version 1
-'\x00\x0f\xac\x02'      #Group Cipher Suite : 00-0f-ac TKIP
-'\x02\x00'              #2 Pairwise Cipher Suites (next two lines)
-'\x00\x0f\xac\x04'      #AES Cipher
-'\x00\x0f\xac\x02'      #TKIP Cipher
-'\x01\x00'              #1 Authentication Key Managment Suite (line below)
-'\x00\x0f\xac\x02'      #Pre-Shared Key
-'\x00\x00'))            #RSN Capabilities (no extra capabilities)
 
-frame = RadioTap()/dot11/beacon/essid/channel/rsn
+frame = RadioTap()/dot11/beacon/essid/channel
 
 frame.show()
 
